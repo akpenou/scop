@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/04 14:03:38 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/06 11:12:31 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/06 19:14:31 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ t_vec3	vec3_create(float x, float y, float z)
 	return (vec);
 }
 
-uint	mpos(t_matrix matrix, uint x, uint y)
+uint32_t	mpos(t_matrix matrix, uint32_t x, uint32_t y)
 {
 	if (x >= matrix.ncols || y >= matrix.nrows)
 		perror("Wrong index");
 	return (matrix.ncols * y + x);
 }
 
-void	matrix_print(t_matrix matrix)
+void		matrix_print(t_matrix matrix)
 {
 	t_ivec4		pos;
 
@@ -81,7 +81,7 @@ void	matrix_print(t_matrix matrix)
 	}
 }
 
-t_matrix	*matrix_create(uint ncols, uint nrows)
+t_matrix	*matrix_create(uint32_t ncols, uint32_t nrows)
 {
 	t_matrix	*matrix;
 
@@ -94,10 +94,10 @@ t_matrix	*matrix_create(uint ncols, uint nrows)
 	return (matrix);
 }
 
-t_matrix	*matrix_id(uint size)
+t_matrix	*matrix_id(uint32_t size)
 {
 	t_matrix	*matrix;
-	uint		index;
+	uint32_t		index;
 
 	matrix = matrix_create(size, size);
 	index = -1;
@@ -109,8 +109,8 @@ t_matrix	*matrix_id(uint size)
 t_matrix	*matrix_add(t_matrix a, t_matrix b)
 {
 	t_matrix		*matrix;
-	uint	index;
-	uint	len;
+	uint32_t	index;
+	uint32_t	len;
 
 	if (a.ncols != b.ncols || a.nrows != b.nrows)
 		return (NULL);

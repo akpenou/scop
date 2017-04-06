@@ -20,4 +20,8 @@ t_array			*parse_textures(char *s, t_array *array);
 t_array			*parse_vertex(char *s, t_array *array);
 t_array			*parse_faces(char *input, t_array *array);
 
+t_meta			parser(char *filename);
+t_meta			init_meta(void);
+void			print_meta(t_meta meta);
+
 #endif

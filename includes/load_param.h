@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.h                                           :+:      :+:    :+:   */
+/*   load_param.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/06 15:47:05 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/06 19:09:54 by akpenou          ###   ########.fr       */
+/*   Created: 2017/04/06 17:05:13 by akpenou           #+#    #+#             */
+/*   Updated: 2017/04/06 19:19:40 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WINDOW_H
-# define WINDOW_H
+#ifndef LOAD_PARAM_H
+# define LOAD_PARAM_H
 
 # include <GL/glew.h>
 # include <SDL2/SDL.h>
 # include <OpenGL/gl.h>
-# include <stdio.h>
-# include <error.h>
+# include <parser.h>
+# include <window.h>
 
-# define WIN_HEIGTH 600
-# define WIN_WIDTH 800
+# define NUM_BUFFERS 4
 
-typedef struct		s_meta_system
+enum	e_vbo_index
 {
-	SDL_GLContext	contexteOpenGL;
-	SDL_Window*		window;
-	SDL_Event		events;
-	GLuint			shader_program;
-}					t_meta_system;
+	VERTEX_IDX,
+	TEXTURE_IDX,
+	NORMAL_IDX,
+	INDEX_IDX
+};
 
-t_meta_system		create_window(void);
-void				destroy_window(t_meta_system meta_system);
+GLuint	load_vao(t_meta	meta);
+void	draw(GLuint vao, t_meta meta, t_meta_system meta_system);
 
 #endif

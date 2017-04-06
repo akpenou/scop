@@ -4,7 +4,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-#define uint unsigned int
 
 typedef struct		s_ivec4
 {
@@ -43,15 +42,15 @@ typedef struct		s_matrix
 	unsigned int	nrows;
 }					t_matrix;
 
-t_matrix	*matrix_create(uint ncols, uint nrows);
+t_matrix	*matrix_create(uint32_t ncols, uint32_t nrows);
 t_matrix	*matrix_mult(t_matrix a, t_matrix b);
 t_matrix	*matrix_add(t_matrix a, t_matrix b);
-t_matrix	*matrix_id(uint size);
+t_matrix	*matrix_id(uint32_t size);
 
 t_ivec4		ivec4_create(int x, int y, int z, int w);
 
 void		matrix_print(t_matrix matrix);
 
-uint		mpos(t_matrix matrix, uint x, uint y);
+uint32_t	mpos(t_matrix matrix, uint32_t x, uint32_t y);
 
 #endif

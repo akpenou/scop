@@ -6,13 +6,13 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 14:32:10 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/06 16:14:20 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/06 16:55:05 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 
-static t_meta	init_meta(void)
+t_meta		init_meta(void)
 {
 	t_meta	meta;
 
@@ -24,7 +24,7 @@ static t_meta	init_meta(void)
 	return (meta);
 }
 
-static void		print_meta(t_meta meta)
+void		print_meta(t_meta meta)
 {
 	print_meta_array(meta.vertex, "vertex");
 	print_meta_array(meta.normal, "normals");

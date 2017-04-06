@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 15:41:48 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/06 16:17:43 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/06 16:50:19 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static t_meta_system	load_window(void)
 		SDL_Quit();
 		ft_error("SDL failed init");
 	}
-	if (!(meta_system.contexteOpenGL = SDL_GL_CreateContext(fenetre)))
+	if (!(meta_system.contexteOpenGL = SDL_GL_CreateContext(meta_system.window)))
 	{
 		printf("SDL_Init failed: %s\n", SDL_GetError());
 		exit(-1);
@@ -60,7 +60,7 @@ t_meta_system				create_window(void)
 
 	load_window_attribute();
 	meta_system = load_window();
-	return (meta_system)
+	return (meta_system);
 }
 
 void						destroy_window(t_meta_system meta_system)
