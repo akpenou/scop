@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 15:41:48 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/06 16:50:19 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/07 15:13:35 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static t_meta_system	load_window(void)
 	const GLubyte	*version;
 
 	if (!(meta_system.window = SDL_CreateWindow("scop", SDL_WINDOWPOS_CENTERED,
-			SDL_WINDOWPOS_CENTERED, WIN_WIDTH, WIN_HEIGTH,
-			SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL)))
+					SDL_WINDOWPOS_CENTERED, WIN_WIDTH, WIN_HEIGTH,
+					SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL)))
 	{
 		SDL_Quit();
 		ft_error("SDL failed init");
@@ -47,8 +47,8 @@ static t_meta_system	load_window(void)
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)
 		ft_error("Glew error");
-	renderer = glGetString (GL_RENDERER);
-	version = glGetString (GL_VERSION);
+	renderer = glGetString(GL_RENDERER);
+	version = glGetString(GL_VERSION);
 	printf("Renderer: %s\n", renderer);
 	printf("OpenGL version supported %s\n", version);
 	return (meta_system);
@@ -68,4 +68,18 @@ void						destroy_window(t_meta_system meta_system)
 	SDL_GL_DeleteContext(meta_system.contexteOpenGL);
 	SDL_DestroyWindow(meta_system.window);
 	SDL_Quit();
+}
+
+void						wait_event(t_meta_system meta_system, t_meta meta)
+{
+	int	terminer = 0;
+	while(!terminer)
+	{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		draw(meta, meta_system);
+		SDL_GL_SwapWindow(meta_system.window);
+		SDL_WaitEvent(&meta_system.events);
+		if(meta_system.events.window.event == SDL_WINDOWEVENT_CLOSE)
+			terminer = 1;
+	}
 }

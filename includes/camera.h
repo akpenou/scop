@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_param.h                                       :+:      :+:    :+:   */
+/*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/06 17:05:13 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/07 19:33:00 by akpenou          ###   ########.fr       */
+/*   Created: 2017/04/07 15:31:09 by akpenou           #+#    #+#             */
+/*   Updated: 2017/04/07 17:56:29 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LOAD_PARAM_H
-# define LOAD_PARAM_H
+#ifndef CAMERA_H
+# define CAMERA_H
 
-# include <GL/glew.h>
-# include <SDL2/SDL.h>
-# include <OpenGL/gl.h>
-# include <OpenGL/glu.h>
-# include <parser.h>
-# include <window.h>
-# include <camera.h>
+# define DEG_TO_RAD (2.0 * M_PI) / 360.0
+
 # include <matrix.h>
+# include <math.h>
 
-# define NUM_BUFFERS 4
-
-enum	e_vbo_index
-{
-	VERTEX_IDX,
-	TEXTURE_IDX,
-	NORMAL_IDX,
-	INDEX_IDX
-};
-
-GLuint	load_vao(t_meta	meta);
-void	draw(t_meta meta, t_meta_system meta_system);
+t_matrix	*m_projection(float near, float far, float fov, float aspect);
+t_matrix	*m_translation(t_vec3 move);
+t_matrix	*m_rotation(t_vec4 q);
+t_vec4		quaternion(t_vec4 input);
 
 #endif

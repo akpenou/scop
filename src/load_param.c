@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 15:41:50 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/06 19:23:04 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/07 19:35:43 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,64 @@
 GLuint	load_vao(t_meta	meta)
 {
 	GLuint	vao;
+	GLuint	err;
 	GLuint	vbo[NUM_BUFFERS];
 
-	glGenVertexArrays(1, &vao); // get vao number
-	glGenBuffers(NUM_BUFFERS, vbo); // generate NUM_BUFFERS buffers for vao
-	// VERTEX
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+	glGenBuffers(NUM_BUFFERS, vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[VERTEX_IDX]);
 	glBufferData(GL_ARRAY_BUFFER, meta.vertex->size, meta.vertex->tab.ptr, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(VERTEX_IDX);
 	glVertexAttribPointer(VERTEX_IDX, 4, GL_FLOAT, GL_FALSE, 0, 0);
-	// TEXTURE
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[TEXTURE_IDX]);
 	glBufferData(GL_ARRAY_BUFFER, meta.texture->size, meta.texture->tab.ptr, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(TEXTURE_IDX);
 	glVertexAttribPointer(TEXTURE_IDX, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	// NORMAL
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[NORMAL_IDX]);
 	glBufferData(GL_ARRAY_BUFFER, meta.normal->size, meta.normal->tab.ptr, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(NORMAL_IDX);
 	glVertexAttribPointer(NORMAL_IDX, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	// INDEX
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo[INDEX_IDX]);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, meta.face->size, meta.face->tab.ptr, GL_STATIC_DRAW);
-	// END
-	glBindVertexArray(0);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, meta.face->size, meta.face->tab.ivec3, GL_STATIC_DRAW);
+	if ((err = glGetError()))
+	{
+		printf("GL %s, l: %d failed: %x\n", __func__, __LINE__, err);
+		ft_error("");
+	}
 	return (vao);
 }
 
-void	draw(GLuint vao, t_meta meta, t_meta_system meta_system)
+void	draw(t_meta meta, t_meta_system meta_system)
 {
+	t_matrix	*projection;
+	t_matrix	*view;
+	int			mat_proj; 
+	int			mat_view;
+	int			err;
+
+	mat_proj = glGetUniformLocation(meta_system.shader_program, "proj");
+	mat_view = glGetUniformLocation(meta_system.shader_program, "view");
+	projection = m_projection(0.1f, 100.0f, 67, WIN_WIDTH / WIN_HEIGTH);
+	view = m_translation(vec3_create(-0.5, -0.5, -0.5));
+	if ((err = glGetError()))
+	{
+		printf("GL %s, l: %d failed: %x\n", __func__, __LINE__, err);
+		ft_error("");
+	}
 	glUseProgram (meta_system.shader_program);
-	glBindVertexArray(vao);
-	glDrawElements(GL_TRIANGLES, meta.face->nb_elem * 3, GL_UNSIGNED_INT, 0);
-	glBindVertexArray(0);
+	glUniformMatrix4fv(mat_proj, 1, GL_FALSE, projection->data);
+	glUniformMatrix4fv(mat_view, 1, GL_FALSE, view->data);
+	glBindVertexArray(meta_system.vao);
+	//glDrawElements(GL_TRIANGLES, meta.face->nb_elem * 3, GL_UNSIGNED_INT, 0);
+	glDrawElementsBaseVertex(GL_TRIANGLES, meta.face->nb_elem * 3, GL_UNSIGNED_INT, 0, 0);
+	//glDrawArrays(GL_TRIANGLES, 0, 3);
+	// glBindVertexArray(meta_system.vao);
+	if ((err = glGetError()))
+	{
+		printf("GL %s, l: %d failed: %x\n", __func__, __LINE__, err);
+		ft_error("");
+	}
 }
 
 /*

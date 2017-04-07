@@ -48,6 +48,9 @@ t_matrix	*matrix_add(t_matrix a, t_matrix b);
 t_matrix	*matrix_id(uint32_t size);
 
 t_ivec4		ivec4_create(int x, int y, int z, int w);
+t_vec4		vec4_create(float x, float y, float z, float w);
+t_ivec3		ivec3_create(int x, int y, int z);
+t_vec3		vec3_create(float x, float y, float z);
 
 void		matrix_print(t_matrix matrix);
 

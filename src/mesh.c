@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 18:26:42 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/06 19:17:41 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/07 12:25:44 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static char		*load_file(char *filename)
 		len += ret;
 	}
 	text[len] = 0;
-	printf("%s", text);
 	return (text);
 }
 
@@ -43,8 +42,13 @@ static GLuint	load_shader(GLenum shader_type, char *filename)
 	
 	shader = glCreateShader(shader_type);
 	shader_code = load_file(filename);
-	glShaderSource (shader, 1, (const GLchar *const *)shader_code, NULL);
-	glCompileShader (shader);
+	glShaderSource(shader, 1, (const GLchar *const *)&shader_code, NULL);
+	glCompileShader(shader);
+	//free(shader_code);
+	if (SDL_GetError()[0])
+		printf("SDL line %d failed: %s\n", __LINE__, SDL_GetError());
+	if (glGetError())
+		printf("GL %s, l: %d failed: %#x\n", __func__, __LINE__, glGetError());
 	return (shader);
 }
 
@@ -56,5 +60,9 @@ GLuint			load_shader_program(void)
 	glAttachShader(shader_program, load_shader(GL_VERTEX_SHADER, "shader.vs"));
 	glAttachShader(shader_program, load_shader(GL_FRAGMENT_SHADER, "shader.fs"));
 	glLinkProgram (shader_program);
+	if (SDL_GetError()[0])
+		printf("SDL line %d failed: %s\n", __LINE__, SDL_GetError());
+	if (glGetError())
+		printf("GL %s, l: %d failed: %#x\n", __func__, __LINE__, glGetError());
 	return (shader_program);
 }

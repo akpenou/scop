@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/04 14:03:38 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/06 19:14:31 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/07 16:43:30 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,17 @@ void		matrix_print(t_matrix matrix)
 t_matrix	*matrix_create(uint32_t ncols, uint32_t nrows)
 {
 	t_matrix	*matrix;
+	int			index;
+	int			size;;
 
+	size = ncols * nrows;
 	if (!(matrix = (t_matrix *)malloc(sizeof(t_matrix))))
 		perror("Malloc error");
-	if (!(matrix->data = (float *)malloc(sizeof(float) * ncols * nrows)))
+	if (!(matrix->data = (float *)malloc(sizeof(float) * size)))
 		perror("Malloc error");
+	index = -1;
+	while (++index < size)
+		matrix->data[index] = 0;
 	matrix->ncols = ncols;
 	matrix->nrows = nrows;
 	return (matrix);
