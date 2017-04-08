@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 14:39:54 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/06 15:37:07 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/08 16:50:16 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,15 @@ t_array		*parse_faces(char *input, t_array *array)
 	input_end = strlen(input) + input;
 	if (!(sscanf(input, "%s %d %d %n", dash, &p.x, &p.y, &i) && (input += i)))
 		ft_error("sscanf error");
+	p.x -= 1;
+	p.y -= 1;
 	while (input < input_end)
 	{
 		if (sscanf(input, "%d %n", &p.z, &i) && (input += i))
+		{
+			p.z -= 1;
 			array_pushback(array, (t_array_u)&p, 0);
+		}
 		// else if (sscanf("%f/%f ", res->p[i].x, res->p[i].y))
 		// 	res->p[i].w = 0b011;
 		// else if (sscanf("%f/%f/%f ", res->p[i].x, res->p[i].y, res->p[i].z))

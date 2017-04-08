@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   draw.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/06 16:11:17 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/08 16:43:02 by akpenou          ###   ########.fr       */
+/*   Created: 2017/04/08 10:21:57 by akpenou           #+#    #+#             */
+/*   Updated: 2017/04/08 13:38:47 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <scop.h>
+#ifndef DRAW_H
+# define DRAW_H
 
-int		main(int ac, char **av)
-{
-	t_infos	infos;
-	t_meta			meta;
+# include <load_param.h>
 
-	if (ac != 2)
-		return (0);
-	meta = parser(av[1]);
-	infos = create_window();
-	infos.vao = load_vao(meta);
-	print_array(meta.vertex, "vertex");
-	print_array(meta.face, "face");
-	infos.shader_program = load_shader_program();
-	infos = load_mvc(infos);
-	wait_event(infos, meta);
-	return (0);
-}
+void	draw(t_meta meta, t_infos infos);
+t_infos	load_mvc(t_infos infos);
+t_infos	move_cam(t_infos infos);
+
+#endif

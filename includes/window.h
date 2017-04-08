@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 15:47:05 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/07 10:39:36 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/08 17:36:28 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,27 @@
 # define WIN_HEIGTH 600
 # define WIN_WIDTH 800
 
-typedef struct		s_meta_system
+typedef struct		s_infos
 {
 	SDL_GLContext	contexteOpenGL;
 	SDL_Window*		window;
 	SDL_Event		events;
 	GLuint			shader_program;
 	GLuint			vao;
-}					t_meta_system;
+	GLuint			proj_idx;
+	GLuint			view_idx;
+	t_matrix		*translation;
+	t_matrix		*rotation;
+	t_matrix		*projection;
+	t_matrix		*view;
+	t_vec3			cam_pos;
+	t_vec3			cam_rot;
+	float			elapsed_time;
+}					t_infos;
 
-t_meta_system		create_window(void);
-void				destroy_window(t_meta_system meta_system);
-void				wait_event(t_meta_system meta_system, t_meta meta);
-void				draw(t_meta meta, t_meta_system meta_system);
+t_infos				create_window(void);
+void				destroy_window(t_infos infos);
+void				wait_event(t_infos infos, t_meta meta);
+# include <draw.h>
 
 #endif

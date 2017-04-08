@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 17:05:13 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/07 19:33:00 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/08 10:48:19 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ enum	e_vbo_index
 };
 
 GLuint	load_vao(t_meta	meta);
-void	draw(t_meta meta, t_meta_system meta_system);
+void	draw(t_meta meta, t_infos infos);
 
 #endif

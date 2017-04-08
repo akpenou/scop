@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 15:41:50 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/07 19:35:43 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/08 10:45:52 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,40 +43,8 @@ GLuint	load_vao(t_meta	meta)
 	return (vao);
 }
 
-void	draw(t_meta meta, t_meta_system meta_system)
-{
-	t_matrix	*projection;
-	t_matrix	*view;
-	int			mat_proj; 
-	int			mat_view;
-	int			err;
-
-	mat_proj = glGetUniformLocation(meta_system.shader_program, "proj");
-	mat_view = glGetUniformLocation(meta_system.shader_program, "view");
-	projection = m_projection(0.1f, 100.0f, 67, WIN_WIDTH / WIN_HEIGTH);
-	view = m_translation(vec3_create(-0.5, -0.5, -0.5));
-	if ((err = glGetError()))
-	{
-		printf("GL %s, l: %d failed: %x\n", __func__, __LINE__, err);
-		ft_error("");
-	}
-	glUseProgram (meta_system.shader_program);
-	glUniformMatrix4fv(mat_proj, 1, GL_FALSE, projection->data);
-	glUniformMatrix4fv(mat_view, 1, GL_FALSE, view->data);
-	glBindVertexArray(meta_system.vao);
-	//glDrawElements(GL_TRIANGLES, meta.face->nb_elem * 3, GL_UNSIGNED_INT, 0);
-	glDrawElementsBaseVertex(GL_TRIANGLES, meta.face->nb_elem * 3, GL_UNSIGNED_INT, 0, 0);
-	//glDrawArrays(GL_TRIANGLES, 0, 3);
-	// glBindVertexArray(meta_system.vao);
-	if ((err = glGetError()))
-	{
-		printf("GL %s, l: %d failed: %x\n", __func__, __LINE__, err);
-		ft_error("");
-	}
-}
-
 /*
-** void	loop_gl(t_meta meta, t_meta_system meta_system, GLuint vao)
+** void	loop_gl(t_meta meta, t_infos infos, GLuint vao)
 ** {
 ** 	float speed = 1.0f; // move at 1 unit per second 
 ** 	float last_position = 0.0f;

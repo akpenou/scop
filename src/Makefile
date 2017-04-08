@@ -6,17 +6,17 @@
 #    By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/05 18:06:53 by akpenou           #+#    #+#              #
-#    Updated: 2017/04/07 17:57:07 by akpenou          ###   ########.fr        #
+#    Updated: 2017/04/08 18:04:25 by akpenou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = array.c matrix.c parse_field.c parser.c error.c window.c main.c load_param.c mesh.c camera.c
+SRC = array.c matrix.c parse_field.c parser.c error.c window.c main.c load_param.c mesh.c camera.c draw.c
 
 OBJ = $(SRC:.c=.o)
 
 NAME = scop
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIBS = -F/Library/Frameworks -framework SDL2 -framework OpenGL
 
