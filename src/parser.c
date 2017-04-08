@@ -6,11 +6,41 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 14:32:10 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/06 16:55:05 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/08 23:10:59 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
+t_vec3		find_center(t_meta meta)
+{
+	t_vec4		min;
+	t_vec4		max;
+	t_vec3		center;
+	uint32_t	index;
+
+	index = 0;
+	min = meta.vertex->tab.vec4[index];
+	max = meta.vertex->tab.vec4[index];
+	while (++index < meta.vertex->nb_elem)
+	{
+		if (min.x > meta.vertex->tab.vec4[index].x)
+			min.x = meta.vertex->tab.vec4[index].x;
+		if (max.x < meta.vertex->tab.vec4[index].x)
+			max.x = meta.vertex->tab.vec4[index].x;
+		if (min.y > meta.vertex->tab.vec4[index].y)
+			min.y = meta.vertex->tab.vec4[index].y;
+		if (max.y < meta.vertex->tab.vec4[index].y)
+			max.y = meta.vertex->tab.vec4[index].y;
+		if (min.z > meta.vertex->tab.vec4[index].z)
+			min.z = meta.vertex->tab.vec4[index].z;
+		if (max.z < meta.vertex->tab.vec4[index].z)
+			max.z = meta.vertex->tab.vec4[index].z;
+		center = vec3_create(-(max.x + min.x) / 2, -(max.y + min.y) / 2, -(max.z + min.z) / 2);
+	printf("center (%f, %f, %f)\n", center.x, center.y, center.z);
+	}
+	printf("center (%f, %f, %f)\n", center.x, center.y, center.z);
+	return (center);
+}
 
 t_meta		init_meta(void)
 {
@@ -49,6 +79,7 @@ t_meta		parser(char *filename)
 			(!strncmp(line, "f ", 2) && parse_faces(line, meta.face)))
 			continue ;
 	}
+	meta.center = find_center(meta);
 	return (meta);
 }
 

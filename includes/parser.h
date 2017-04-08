@@ -13,6 +13,7 @@ typedef struct	s_meta
 	t_array		*normal;
 	t_array		*texture;
 	t_array		*face;
+	t_vec3		center;
 }				t_meta;
 
 t_array			*parse_normals(char *s, t_array *array);

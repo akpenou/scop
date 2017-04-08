@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 15:31:07 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/08 17:48:14 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/08 23:11:33 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ t_matrix	*m_rotation(t_vec4 q)
 
 	rotation = matrix_id(4);
 	rotation->data[mpos(*rotation, 0, 0)] = 1 - 2 * q.z * q.z - 2 * q.w * q.w;
-	rotation->data[mpos(*rotation, 0, 1)] = 2 * q.y * q.z - 2 * q.x * q.w;
-	rotation->data[mpos(*rotation, 0, 2)] = 2 * q.y * q.w + 2 * q.x * q.z;
-	rotation->data[mpos(*rotation, 1, 0)] = 2 * q.y * q.z + 2 * q.x * q.w;
+	rotation->data[mpos(*rotation, 1, 0)] = 2 * q.y * q.z - 2 * q.x * q.w;
+	rotation->data[mpos(*rotation, 2, 0)] = 2 * q.y * q.w + 2 * q.x * q.z;
+	rotation->data[mpos(*rotation, 0, 1)] = 2 * q.y * q.z + 2 * q.x * q.w;
 	rotation->data[mpos(*rotation, 1, 1)] = 1 - 2 * q.y * q.y - 2 * q.w * q.w;
-	rotation->data[mpos(*rotation, 1, 2)] = 2 * q.z * q.w - 2 * q.x * q.y;
-	rotation->data[mpos(*rotation, 2, 0)] = 2 * q.y * q.w - 2 * q.x * q.z;
-	rotation->data[mpos(*rotation, 2, 1)] = 2 * q.z * q.w + 2 * q.x * q.y;
+	rotation->data[mpos(*rotation, 2, 1)] = 2 * q.z * q.w - 2 * q.x * q.y;
+	rotation->data[mpos(*rotation, 0, 2)] = 2 * q.y * q.w - 2 * q.x * q.z;
+	rotation->data[mpos(*rotation, 1, 2)] = 2 * q.z * q.w + 2 * q.x * q.y;
 	rotation->data[mpos(*rotation, 2, 2)] = 1 - 2 * q.y * q.y - 2 * q.z * q.z;
 	return (rotation);
 }

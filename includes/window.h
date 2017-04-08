@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 15:47:05 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/08 17:36:28 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/08 22:12:38 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ typedef struct		s_infos
 	GLuint			vao;
 	GLuint			proj_idx;
 	GLuint			view_idx;
+	GLuint			center_idx;
+	GLuint			rot_idx;
+	t_matrix		*center;
 	t_matrix		*translation;
 	t_matrix		*rotation;
 	t_matrix		*projection;
