@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 15:41:48 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/08 18:49:07 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/09 10:12:11 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ void						wait_event(t_infos infos, t_meta meta)
 
 	while(!terminer)
 	{
-		infos.elapsed_time = 1.0f;
+		infos.elapsed_time = 0.1f;
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		draw(meta, infos);
 		SDL_GL_SwapWindow(infos.window);
-		SDL_WaitEvent(&infos.events);
+		SDL_PollEvent(&infos.events);
 		infos = move_cam(infos);
 		if(infos.events.window.event == SDL_WINDOWEVENT_CLOSE)
 			terminer = 1;

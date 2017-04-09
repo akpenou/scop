@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 15:31:07 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/08 23:11:33 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/09 09:39:33 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,20 @@ t_matrix	*m_rotation(t_vec4 q)
 	return (rotation);
 }
 
-t_vec4		quaternion(t_vec4 input)
+t_vec4		quaternion(t_vec3 input)
 {
-	t_vec4	quaternion;
-	float	sin_theta;
-	float	norm;
+	t_vec4	quat;
+	float	t[6];
 
-	sin_theta = sin(input.x / 2.0);
-	norm = sqrt(input.x * input.x + input.y * input.y + input.z * input.z);
-	quaternion.x = cos(input.x / 2.0) / norm;
-	quaternion.y = sin_theta * input.y / norm;
-	quaternion.z = sin_theta * input.z / norm;
-	quaternion.w = sin_theta * input.w / norm;
-	return (quaternion);
+	t[0] = cos(input.z * 0.5);
+	t[1] = sin(input.z * 0.5);
+	t[2] = cos(input.x * 0.5);
+	t[3] = sin(input.x * 0.5);
+	t[4] = cos(input.y * 0.5);
+	t[5] = sin(input.y * 0.5);
+	quat.x = t[0] * t[2] * t[4] + t[1] * t[3] * t[5];
+	quat.y = t[0] * t[3] * t[4] - t[1] * t[2] * t[5];
+	quat.z = t[0] * t[2] * t[5] + t[1] * t[3] * t[4];
+	quat.w = t[1] * t[2] * t[4] - t[0] * t[3] * t[5];
+	return (quat);
 }

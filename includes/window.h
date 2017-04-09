@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 15:47:05 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/08 22:12:38 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/09 10:52:57 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <error.h>
 # include <parser.h>
 
-# define WIN_HEIGTH 600
-# define WIN_WIDTH 800
+# define WIN_HEIGTH 900
+# define WIN_WIDTH 1600
 
 typedef struct		s_infos
 {
