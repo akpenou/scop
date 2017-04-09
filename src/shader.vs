@@ -12,4 +12,5 @@ uniform mat4 obj_rot;
 void main () {
 	pos = obj_rot * center * vertex_position;
 	gl_Position = proj * view * pos;
+	pos = vertex_position;
 }

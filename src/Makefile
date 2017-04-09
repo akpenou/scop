@@ -6,7 +6,7 @@
 #    By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/05 18:06:53 by akpenou           #+#    #+#              #
-#    Updated: 2017/04/08 18:04:25 by akpenou          ###   ########.fr        #
+#    Updated: 2017/04/09 22:11:57 by akpenou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBS = -F/Library/Frameworks -framework SDL2 -framework OpenGL
 
 INCLUDES = -I../includes -I ~/.brew/include
 
-GLEW = ../tests/libGLEW.a -L/Users/akpenou/.brew/lib -lglew
+GLEW = ../includes/libGLEW.a -L/Users/akpenou/.brew/lib -lglew
 
 .SILENT:
 
