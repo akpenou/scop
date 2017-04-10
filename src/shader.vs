@@ -2,7 +2,7 @@
 
 in vec4 vertex_position;
 
-out vec4 pos;
+flat out vec4 pos;
 
 uniform mat4 center;
 uniform mat4 proj;
