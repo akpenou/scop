@@ -6,11 +6,11 @@
 #    By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/05 18:06:53 by akpenou           #+#    #+#              #
-#    Updated: 2017/04/09 22:11:57 by akpenou          ###   ########.fr        #
+#    Updated: 2017/04/11 00:08:07 by akpenou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = array.c matrix.c parse_field.c parser.c error.c window.c main.c load_param.c mesh.c camera.c draw.c
+SRC = array.c matrix.c parse_field.c parser.c error.c window.c main.c load_param.c mesh.c camera.c draw.c bmp.c
 
 OBJ = $(SRC:.c=.o)
 

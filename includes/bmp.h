@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 19:15:56 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/10 20:13:26 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/10 22:22:19 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <matrix.h>
+# include <array.h>
 
 typedef struct			__attribute__((__packed__)) 
 {
@@ -40,6 +42,13 @@ typedef struct			__attribute__((__packed__))
 	unsigned int		importantcolours;   /* Important colours         */
 }						t_bmp_infoheader;
 
-// define texture
+typedef struct			s_texture
+{
+	unsigned int		width;
+	unsigned int		height;
+	unsigned int		bits;
+	unsigned int		size;
+	t_array				image;
+}						t_texture;
 
 #endif
