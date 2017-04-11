@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 11:42:27 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/06 14:40:28 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/11 18:59:56 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,10 @@ void		print_array(t_array *tab, char *prefix)
 	while (++i < tab->nb_elem)
 	{
 		printf("%3d ", i);
-		if (tab->type == VEC4)
+		if (tab->type == IVEC4)
+			printf("[ %5.2d, %5.2d, %5.2d, %5.2d]\n", tab->tab.ivec4[i].x,
+					tab->tab.ivec4[i].y, tab->tab.ivec4[i].z, tab->tab.ivec4[i].w);
+		else if (tab->type == VEC4)
 			printf("[ %5.2f, %5.2f, %5.2f, %5.2f]\n", tab->tab.vec4[i].x,
 					tab->tab.vec4[i].y, tab->tab.vec4[i].z, tab->tab.vec4[i].w);
 		else if (tab->type == VEC3)

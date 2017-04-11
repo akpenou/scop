@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 15:47:05 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/09 10:52:57 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/11 10:43:54 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ t_infos				create_window(void);
 void				destroy_window(t_infos infos);
 void				wait_event(t_infos infos, t_meta meta);
 # include <draw.h>
+# include <texture.h>
 
 #endif

@@ -8,9 +8,9 @@ uniform mat4 center;
 uniform mat4 proj;
 uniform mat4 view;
 uniform mat4 obj_rot;
+uniform sampler2D basic_texture;
 
 void main () {
 	pos = obj_rot * center * vertex_position;
 	gl_Position = proj * view * pos;
-	pos = vertex_position;
 }

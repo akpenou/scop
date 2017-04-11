@@ -6,17 +6,17 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 19:15:53 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/10 22:54:19 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/11 11:20:17 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <bmp.h>
 
-static t_vec4		bgr_to_rgba(unsigned char blue, unsigned char green, unsigned char red)
+static t_ivec4		bgr_to_rgba(unsigned char blue, unsigned char green, unsigned char red)
 {
-	t_vec4	rgba;
+	t_ivec4	rgba;
 
-	rgba = vec4_create((float)red / 255.0f, (float)green / 255.0f, (float)blue / 255.0f, 1.0f);
+	rgba = ivec4_create(red, green, blue, 255);
 	return (rgba);
 }
 
@@ -25,11 +25,11 @@ static t_texture	read_image(t_texture texture, unsigned char *image)
 	unsigned int	tmp_index;
 	unsigned int	index;
 	unsigned int	max;
-	t_vec4			pixel;
+	t_ivec4			pixel;
 
 	index = -1;
 	max = texture.width * texture.height;
-	texture.image = *array_create(0, VEC4);
+	texture.image = *array_create(0, IVEC4);
 	while (++index < max)
 	{
 		tmp_index = index * 3;
@@ -48,7 +48,11 @@ t_texture			load_bmp(char *filename)
 	unsigned char		*image;
 	FILE				*f;
 
-	f = fopen(filename, "rb");
+	if (!(f = fopen(filename, "rb")))
+	{
+		printf("Error: can't open %s\n", filename);
+		exit(-1);
+	}
  	if (fread(&header, sizeof(header), 1, f) < 1)
 	{
 		printf("Error: can't read the header of %s\n", filename);

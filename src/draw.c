@@ -38,6 +38,7 @@ t_infos	load_mvc(t_meta meta, t_infos infos)
 	t_vec3	cam;
 
 	cam = infos.cam_rot;
+	load_texture(load_bmp("../textures/water.bmp"), infos);
 	infos.proj_idx = glGetUniformLocation(infos.shader_program, "proj");
 	infos.view_idx = glGetUniformLocation(infos.shader_program, "view");
 	infos.center_idx = glGetUniformLocation(infos.shader_program, "center");
