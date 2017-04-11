@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 15:47:05 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/11 10:43:54 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/11 23:51:57 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ typedef struct		s_infos
 	GLuint			view_idx;
 	GLuint			center_idx;
 	GLuint			rot_idx;
+	GLuint			fade_idx;
 	t_matrix		*center;
 	t_matrix		*translation;
 	t_matrix		*rotation;
 	t_matrix		*projection;
 	t_matrix		*view;
+	int				fade;
+	float			current_fade;
 	t_vec3			cam_pos;
 	t_vec3			cam_rot;
 	float			elapsed_time;

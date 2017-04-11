@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 19:15:56 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/11 10:42:58 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/12 00:15:39 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <matrix.h>
 # include <array.h>
 # include <texture.h>
+# include <error.h>
 
 typedef struct s_texture t_texture;
 

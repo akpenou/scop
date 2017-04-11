@@ -6,34 +6,12 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 15:31:07 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/09 09:39:33 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/12 00:04:00 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <camera.h>
 #include <window.h>
-
-/*
-** Projection matrix
-** [Sx,  0,  0,  0]
-** [ 0, Sy,  0,  0]
-** [ 0,  0, Sz, Pz]
-** [ 0,  0, -1,  0]
-**
-** Sx = (2 * near) / (range * aspect + range + aspect) = near / (range * aspect)
-** Sy = near / range
-** Sz = -(far + near) / (far - near)
-** Pz = -(2 * far * near) / (far - near)
-** range = tan(fov * 0.5) * near
-*/
-
-/*
-** f aspect 0 0 
-** 0 0 f 0 
-** 0 0 0 zFar+zNear 
-** zNear-zFar 2×zFar×zNear zNear-zFar
-** 0 0 -1 0
-*/
 
 t_matrix	*m_projection(float near, float far, float fov, float aspect)
 {
@@ -46,7 +24,8 @@ t_matrix	*m_projection(float near, float far, float fov, float aspect)
 	projection->data[mpos(*projection, 0, 0)] = near / (range * aspect);
 	projection->data[mpos(*projection, 1, 1)] = near / range;
 	projection->data[mpos(*projection, 2, 2)] = -(far + near) / (far - near);
-	projection->data[mpos(*projection, 2, 3)] = -(2 * far * near) / (far - near);
+	projection->data[mpos(*projection, 2, 3)] = -(2 * far * near) /
+														(far - near);
 	projection->data[mpos(*projection, 3, 2)] = -1;
 	matrix_print(*projection);
 	return (projection);

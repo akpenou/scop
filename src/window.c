@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 15:41:48 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/11 11:59:15 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/11 23:58:59 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,6 @@ static t_infos	load_window(void)
 		ft_error("Glew error");
 	renderer = glGetString(GL_RENDERER);
 	version = glGetString(GL_VERSION);
-	// glEnable(GL_CULL_FACE);
-	// glCullFace(GL_BACK);
-	// glFrontFace(GL_CCW);
 	printf("Renderer: %s\n", renderer);
 	printf("OpenGL version supported %s\n", version);
 	return (infos);
