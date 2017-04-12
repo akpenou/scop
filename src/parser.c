@@ -6,16 +6,16 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 14:32:10 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/08 23:10:59 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/12 11:20:42 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
+
 t_vec3		find_center(t_meta meta)
 {
 	t_vec4		min;
 	t_vec4		max;
-	t_vec3		center;
 	uint32_t	index;
 
 	index = 0;
@@ -35,17 +35,14 @@ t_vec3		find_center(t_meta meta)
 			min.z = meta.vertex->tab.vec4[index].z;
 		if (max.z < meta.vertex->tab.vec4[index].z)
 			max.z = meta.vertex->tab.vec4[index].z;
-		center = vec3_create(-(max.x + min.x) / 2, -(max.y + min.y) / 2, -(max.z + min.z) / 2);
-	printf("center (%f, %f, %f)\n", center.x, center.y, center.z);
 	}
-	printf("center (%f, %f, %f)\n", center.x, center.y, center.z);
-	return (center);
+	return (vec3_create(-(max.x + min.x) / 2, -(max.y + min.y) / 2,
+			-(max.z + min.z) / 2));
 }
 
 t_meta		init_meta(void)
 {
 	t_meta	meta;
-
 
 	meta.vertex = array_create(0, VEC4);
 	meta.normal = array_create(0, VEC3);
@@ -59,7 +56,7 @@ void		print_meta(t_meta meta)
 	print_meta_array(meta.vertex, "vertex");
 	print_meta_array(meta.normal, "normals");
 	print_meta_array(meta.texture, "textures");
-	print_meta_array(meta.face, "face");
+	print_meta_array(meta.face, " face");
 }
 
 t_meta		parser(char *filename)
@@ -82,4 +79,3 @@ t_meta		parser(char *filename)
 	meta.center = find_center(meta);
 	return (meta);
 }
-

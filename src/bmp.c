@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 19:15:53 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/12 00:19:21 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/12 10:50:19 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ t_texture				load_bmp(char *filename)
 
 	if (!(f = fopen(filename, "rb")))
 		ft_error("Error: can't open ../textures/default.bmp");
-	if ((fread(&header, sizeof(header), 1, f) < 1) &&
+	if ((fread(&header, sizeof(header), 1, f) < 1) ||
 			(fread(&infoheader, sizeof(infoheader), 1, f) < 1))
-		printf("Error: can't read the infoheader of ../textures/default.bmp");
+		ft_error("Error: can't read the header of ../textures/default.bmp");
+	if (header.type != 0x4d42 || infoheader.compression)
+		ft_error("Wrong type of file magic or compression");
 	texture.size = infoheader.width * infoheader.height * infoheader.bits / 8;
 	if (!(image = (unsigned char *)malloc(texture.size)))
 		ft_error("malloc error");
@@ -66,9 +68,9 @@ t_texture				load_bmp(char *filename)
 	texture.height = infoheader.height;
 	texture.bits = infoheader.bits;
 	if (fread(image, texture.size, 1, f) < 1)
-		printf("Error: can't read the image of ../textures/default.bmp");
+		ft_error("Error: can't read the image of ../textures/default.bmp");
 	texture = read_image(texture, image);
 	free(image);
-	print_array(&texture.image, "texture");
+	fclose(f);
 	return (texture);
 }

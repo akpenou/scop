@@ -1,0 +1,3 @@
+Norme: /Users/akpenou/GitHub/scop/includes/window.h
+Error (line 30, col 15): contexteOpenGL not unixcase
+Norme: ./window.c

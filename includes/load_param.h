@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 17:05:13 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/08 10:48:19 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/12 11:52:37 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 # include <camera.h>
 # include <matrix.h>
 
-# define NUM_BUFFERS 4
+# define NUM_BUFFERS 2
+
+typedef	struct s_infos	t_infos;
 
 enum	e_vbo_index
 {
 	VERTEX_IDX,
-	TEXTURE_IDX,
-	NORMAL_IDX,
 	INDEX_IDX
 };
 

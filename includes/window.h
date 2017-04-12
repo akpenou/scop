@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 15:47:05 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/11 23:51:57 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/12 11:47:41 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@
 # include <stdio.h>
 # include <error.h>
 # include <parser.h>
+# include <draw.h>
+# include <texture.h>
 
 # define WIN_HEIGTH 900
 # define WIN_WIDTH 1600
 
-typedef struct		s_infos
+typedef	struct		s_infos
 {
-	SDL_GLContext	contexteOpenGL;
-	SDL_Window*		window;
+	SDL_GLContext	contexte_opengl;
+	SDL_Window		*window;
 	SDL_Event		events;
 	GLuint			shader_program;
 	GLuint			vao;
@@ -50,7 +52,5 @@ typedef struct		s_infos
 t_infos				create_window(void);
 void				destroy_window(t_infos infos);
 void				wait_event(t_infos infos, t_meta meta);
-# include <draw.h>
-# include <texture.h>
 
 #endif

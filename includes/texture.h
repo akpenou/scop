@@ -6,7 +6,7 @@
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 09:55:15 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/11 10:41:41 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/12 11:53:06 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <bmp.h>
 # include <window.h>
+
+typedef	struct s_infos	t_infos;
 
 typedef struct			s_texture
 {
@@ -25,6 +27,6 @@ typedef struct			s_texture
 	t_array				image;
 }						t_texture;
 
-void	load_texture(t_texture texture, t_infos infos);
+void					load_texture(t_texture texture, t_infos infos);
 
 #endif

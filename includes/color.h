@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.h                                             :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/05 14:31:05 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/05 14:37:58 by akpenou          ###   ########.fr       */
+/*   Created: 2017/04/09 21:01:46 by akpenou           #+#    #+#             */
+/*   Updated: 2017/04/09 21:16:24 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIST_H
-# define LIST_H
+#ifndef COLOR_H
+# define COLOR_H
 
-# include <stdlib.h>
+# include <parser.h>
 
-typedef struct			s_lst
-{
-	struct s_lst		*next;
-	void				*data;
-}						t_lst;
-
-int			lstlen(t_lst *lst);
-t_lst		*push_front(void *data, t_lst **lst);
+t_array		*create_color(t_meta meta);
 
 #endif

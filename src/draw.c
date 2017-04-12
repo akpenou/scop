@@ -1,11 +1,12 @@
-/* ************************************************************************** */ /*                                                                            */
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akpenou <akpenou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/08 10:21:43 by akpenou           #+#    #+#             */
-/*   Updated: 2017/04/08 16:05:45 by akpenou          ###   ########.fr       */
+/*   Updated: 2017/04/12 10:58:51 by akpenou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +16,15 @@ void	draw(t_meta meta, t_infos infos)
 {
 	int		err;
 
-	glUseProgram (infos.shader_program);
+	glUseProgram(infos.shader_program);
 	glUniformMatrix4fv(infos.proj_idx, 1, GL_FALSE, infos.projection->data);
 	glUniformMatrix4fv(infos.view_idx, 1, GL_FALSE, infos.view->data);
 	glUniformMatrix4fv(infos.center_idx, 1, GL_FALSE, infos.center->data);
 	glUniformMatrix4fv(infos.rot_idx, 1, GL_FALSE, infos.rotation->data);
 	glUniform1f(infos.fade_idx, infos.current_fade);
 	glBindVertexArray(infos.vao);
-	glDrawElementsBaseVertex(GL_TRIANGLES, meta.face->nb_elem * 3, GL_UNSIGNED_INT, 0, 0);
+	glDrawElementsBaseVertex(GL_TRIANGLES, meta.face->nb_elem * 3,
+													GL_UNSIGNED_INT, 0, 0);
 	if ((err = glGetError()))
 	{
 		printf("GL %s, l: %d failed: %x\n", __func__, __LINE__, err);
@@ -36,13 +38,14 @@ t_infos	load_mvc(t_meta meta, t_infos infos)
 	t_vec3	cam;
 
 	cam = infos.cam_rot;
-	load_texture(load_bmp("../textures/water.bmp"), infos);
+	load_texture(load_bmp("../textures/default.bmp"), infos);
 	infos.proj_idx = glGetUniformLocation(infos.shader_program, "proj");
 	infos.view_idx = glGetUniformLocation(infos.shader_program, "view");
 	infos.center_idx = glGetUniformLocation(infos.shader_program, "center");
 	infos.rot_idx = glGetUniformLocation(infos.shader_program, "obj_rot");
 	infos.fade_idx = glGetUniformLocation(infos.shader_program, "fade");
-	infos.projection = m_projection(0.1f, 100.0f, 67, (float)WIN_WIDTH / (float)WIN_HEIGTH);
+	infos.projection = m_projection(0.1f, 100.0f, 67, (float)WIN_WIDTH /
+														(float)WIN_HEIGTH);
 	infos.fade = 0;
 	infos.current_fade = 0.0f;
 	infos.cam_pos = vec3_create(0, 0, 0);
@@ -86,13 +89,9 @@ t_infos	move_cam(t_infos infos)
 			infos.cam_pos.y += infos.elapsed_time;
 		if (infos.events.key.keysym.sym == SDLK_c)
 			infos.fade = infos.fade ? 0 : 1;
-		printf("cam pos (%f, %f, %f)\n", infos.cam_pos.x, infos.cam_pos.y, infos.cam_pos.z);
-		printf("cam rot (%f, %f, %f)\n", infos.cam_rot.x, infos.cam_rot.y, infos.cam_rot.z);
 	}
-	free(infos.view->data);
-	free(infos.view);
-	free(infos.rotation->data);
-	free(infos.rotation);
+	matrix_free(infos.view);
+	matrix_free(infos.rotation);
 	infos.view = m_translation(infos.cam_pos);
 	infos.rotation = m_rotation(quaternion(infos.cam_rot));
 	infos.current_fade = update_fade(infos.current_fade, infos.fade);
